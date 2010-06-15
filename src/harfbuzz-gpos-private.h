@@ -53,10 +53,12 @@ struct  HB_ValueRecord_
 					 advance                        */
   HB_Device  YAdvanceDevice;         /* device table for vertical
 					 advance                        */
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   HB_UShort   XIdPlacement;           /* horizontal placement metric ID */
   HB_UShort   YIdPlacement;           /* vertical placement metric ID   */
   HB_UShort   XIdAdvance;             /* horizontal advance metric ID   */
   HB_UShort   YIdAdvance;             /* vertical advance metric ID     */
+#endif
 };
 
 typedef struct HB_ValueRecord_  HB_ValueRecord;
@@ -109,6 +111,7 @@ struct  HB_AnchorFormat3_
 typedef struct HB_AnchorFormat3_  HB_AnchorFormat3;
 
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
 struct  HB_AnchorFormat4_
 {
   HB_UShort  XIdAnchor;               /* horizontal metric ID */
@@ -116,6 +119,7 @@ struct  HB_AnchorFormat4_
 };
 
 typedef struct HB_AnchorFormat4_  HB_AnchorFormat4;
+#endif
 
 
 struct  HB_Anchor_
@@ -128,7 +132,9 @@ struct  HB_Anchor_
     HB_AnchorFormat1  af1;
     HB_AnchorFormat2  af2;
     HB_AnchorFormat3  af3;
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     HB_AnchorFormat4  af4;
+#endif
   } af;
 };
 

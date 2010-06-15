@@ -69,12 +69,14 @@ struct  HB_CaretValueFormat3_
 typedef struct HB_CaretValueFormat3_  HB_CaretValueFormat3;
 
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
 struct  HB_CaretValueFormat4_
 {
   HB_UShort  IdCaretValue;            /* metric ID */
 };
 
 typedef struct HB_CaretValueFormat4_  HB_CaretValueFormat4;
+#endif
 
 
 struct  HB_CaretValue_
@@ -86,7 +88,9 @@ struct  HB_CaretValue_
     HB_CaretValueFormat1  cvf1;
     HB_CaretValueFormat2  cvf2;
     HB_CaretValueFormat3  cvf3;
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     HB_CaretValueFormat4  cvf4;
+#endif
   } cvf;
 };
 

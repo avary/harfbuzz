@@ -57,6 +57,7 @@ static HB_Error  GPOS_Do_Glyph_Lookup( GPOS_Instance*    gpi,
 
 
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
 /* the client application must replace this with something more
    meaningful if multiple master fonts are to be supported.     */
 
@@ -71,6 +72,7 @@ static HB_Error  default_mmfunc( HB_Font      font,
   HB_UNUSED(data);
   return ERR(HB_Err_Not_Covered); /* ERR() call intended */
 }
+#endif
 
 
 
@@ -97,7 +99,9 @@ HB_Error  HB_Load_GPOS_Table( HB_Stream stream,
   if ( ALLOC ( gpos, sizeof( *gpos ) ) )
     return error;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   gpos->mmfunc = default_mmfunc;
+#endif
 
   /* skip version */
 
@@ -381,48 +385,72 @@ static HB_Error  Load_ValueRecord( HB_ValueRecord*  vr,
     if ( ACCESS_Frame( 2L ) )
       goto Fail1;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     vr->XIdPlacement = GET_UShort();
+#else
+    (void) GET_UShort();
+#endif
 
     FORGET_Frame();
   }
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   else
     vr->XIdPlacement = 0;
+#endif
 
   if ( format & HB_GPOS_FORMAT_HAVE_Y_ID_PLACEMENT )
   {
     if ( ACCESS_Frame( 2L ) )
       goto Fail1;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     vr->YIdPlacement = GET_UShort();
+#else
+    (void) GET_UShort();
+#endif
 
     FORGET_Frame();
   }
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   else
     vr->YIdPlacement = 0;
+#endif
 
   if ( format & HB_GPOS_FORMAT_HAVE_X_ID_ADVANCE )
   {
     if ( ACCESS_Frame( 2L ) )
       goto Fail1;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     vr->XIdAdvance = GET_UShort();
+#else
+    (void) GET_UShort();
+#endif
 
     FORGET_Frame();
   }
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   else
     vr->XIdAdvance = 0;
+#endif
 
   if ( format & HB_GPOS_FORMAT_HAVE_Y_ID_ADVANCE )
   {
     if ( ACCESS_Frame( 2L ) )
       goto Fail1;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     vr->YIdAdvance = GET_UShort();
+#else
+    (void) GET_UShort();
+#endif
 
     FORGET_Frame();
   }
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   else
     vr->YIdAdvance = 0;
+#endif
 
   return HB_Err_Ok;
 
@@ -457,10 +485,12 @@ static HB_Error  Get_ValueRecord( GPOS_Instance*    gpi,
 				  HB_UShort         format,
 				  HB_Position      gd )
 {
-  HB_Fixed           value;
   HB_Short         pixel_value;
   HB_Error         error = HB_Err_Ok;
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   HB_GPOSHeader*  gpos = gpi->gpos;
+  HB_Fixed           value;
+#endif
 
   HB_UShort  x_ppem, y_ppem;
   HB_16Dot16   x_scale, y_scale;
@@ -511,6 +541,7 @@ static HB_Error  Get_ValueRecord( GPOS_Instance*    gpi,
     }
   }
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   /* values returned from mmfunc() are already in fractional pixels */
 
   if ( format & HB_GPOS_FORMAT_HAVE_X_ID_PLACEMENT )
@@ -545,6 +576,7 @@ static HB_Error  Get_ValueRecord( GPOS_Instance*    gpi,
       return error;
     gd->y_advance += value;
   }
+#endif
 
   return error;
 }
@@ -654,8 +686,13 @@ static HB_Error  Load_Anchor( HB_Anchor*  an,
     if ( ACCESS_Frame( 4L ) )
       return error;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     an->af.af4.XIdAnchor = GET_UShort();
     an->af.af4.YIdAnchor = GET_UShort();
+#else
+    (void) GET_UShort();
+    (void) GET_UShort();
+#endif
 
     FORGET_Frame();
     break;
@@ -690,7 +727,9 @@ static HB_Error  Get_Anchor( GPOS_Instance*   gpi,
 {
   HB_Error  error = HB_Err_Ok;
 
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
   HB_GPOSHeader*  gpos = gpi->gpos;
+#endif
   HB_UShort        ap;
 
   HB_Short         pixel_value;
@@ -756,6 +795,7 @@ static HB_Error  Get_Anchor( GPOS_Instance*   gpi,
     break;
 
   case 4:
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
     error = (gpos->mmfunc)( gpi->font, an->af.af4.XIdAnchor,
 			    x_value, gpos->data );
     if ( error )
@@ -766,6 +806,9 @@ static HB_Error  Get_Anchor( GPOS_Instance*   gpi,
     if ( error )
       return error;
     break;
+#else
+    return ERR(HB_Err_Not_Covered);
+#endif
   }
 
   return error;
@@ -5966,8 +6009,7 @@ HB_Error  HB_GPOS_Clear_Features( HB_GPOSHeader*  gpos )
   return HB_Err_Ok;
 }
 
-
-
+#ifdef HB_SUPPORT_MULTIPLE_MASTER
 HB_Error  HB_GPOS_Register_MM_Function( HB_GPOSHeader*  gpos,
 					HB_MMFunction   mmfunc,
 					void*            data )
@@ -5980,6 +6022,7 @@ HB_Error  HB_GPOS_Register_MM_Function( HB_GPOSHeader*  gpos,
 
   return HB_Err_Ok;
 }
+#endif
 
 /* If `dvi' is TRUE, glyph contour points for anchor points and device
    tables are ignored -- you will get device independent values.         */
