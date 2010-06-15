@@ -196,7 +196,7 @@ typedef struct HB_CoverageFormat2_  HB_CoverageFormat2;
 
 struct  HB_Coverage_
 {
-  HB_UShort  CoverageFormat;          /* 1 or 2 */
+  HB_Byte    CoverageFormat;          /* 1 or 2 */
 
   union
   {
@@ -244,7 +244,7 @@ struct  HB_ClassDefinition_
 {
   HB_Bool    loaded;
 
-  HB_UShort  ClassFormat;             /* 1 or 2                      */
+  HB_Byte    ClassFormat;             /* 1 or 2                      */
 
   union
   {
@@ -260,7 +260,7 @@ struct HB_Device_
 {
   HB_UShort   StartSize;              /* smallest size to correct      */
   HB_UShort   EndSize;                /* largest size to correct       */
-  HB_UShort   DeltaFormat;            /* DeltaValue array data format:
+  HB_Byte     DeltaFormat;            /* DeltaValue array data format:
 					 1, 2, or 3                    */
   HB_UShort*  DeltaValue;             /* array of compressed data      */
 };

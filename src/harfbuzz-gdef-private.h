@@ -79,7 +79,7 @@ typedef struct HB_CaretValueFormat4_  HB_CaretValueFormat4;
 
 struct  HB_CaretValue_
 {
-  HB_UShort  CaretValueFormat;        /* 1, 2, 3, or 4 */
+  HB_Byte  CaretValueFormat;          /* 1, 2, 3, or 4 */
 
   union
   {

@@ -120,7 +120,7 @@ typedef struct HB_AnchorFormat4_  HB_AnchorFormat4;
 
 struct  HB_Anchor_
 {
-  HB_UShort  PosFormat;               /* 1, 2, 3, or 4 -- 0 indicates
+  HB_Byte  PosFormat;                 /* 1, 2, 3, or 4 -- 0 indicates
 					 that there is no Anchor table */
 
   union
@@ -175,7 +175,7 @@ typedef struct HB_SinglePosFormat2_  HB_SinglePosFormat2;
 
 struct  HB_SinglePos_
 {
-  HB_UShort     PosFormat;            /* 1 or 2         */
+  HB_Byte       PosFormat;            /* 1 or 2         */
   HB_Coverage  Coverage;             /* Coverage table */
 
   HB_UShort     ValueFormat;          /* format of ValueRecord table */
@@ -255,7 +255,7 @@ typedef struct HB_PairPosFormat2_  HB_PairPosFormat2;
 
 struct  HB_PairPos_
 {
-  HB_UShort     PosFormat;            /* 1 or 2         */
+  HB_Byte       PosFormat;            /* 1 or 2         */
   HB_Coverage  Coverage;             /* Coverage table */
   HB_UShort     ValueFormat1;         /* format of ValueRecord table
 					 for first glyph             */
@@ -507,7 +507,7 @@ typedef struct HB_ContextPosFormat3_  HB_ContextPosFormat3;
 
 struct  HB_ContextPos_
 {
-  HB_UShort  PosFormat;               /* 1, 2, or 3     */
+  HB_Byte  PosFormat;                 /* 1, 2, or 3     */
 
   union
   {
@@ -656,7 +656,7 @@ typedef struct HB_ChainContextPosFormat3_  HB_ChainContextPosFormat3;
 
 struct  HB_ChainContextPos_
 {
-  HB_UShort  PosFormat;             /* 1, 2, or 3 */
+  HB_Byte  PosFormat;               /* 1, 2, or 3 */
 
   union
   {

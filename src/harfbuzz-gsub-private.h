@@ -58,7 +58,7 @@ typedef struct HB_SingleSubstFormat2_  HB_SingleSubstFormat2;
 
 struct  HB_SingleSubst_
 {
-  HB_UShort     SubstFormat;          /* 1 or 2         */
+  HB_Byte     SubstFormat;            /* 1 or 2         */
   HB_Coverage  Coverage;             /* Coverage table */
 
   union
@@ -255,7 +255,7 @@ typedef struct HB_ContextSubstFormat3_  HB_ContextSubstFormat3;
 
 struct  HB_ContextSubst_
 {
-  HB_UShort  SubstFormat;             /* 1, 2, or 3 */
+  HB_Byte  SubstFormat;               /* 1, 2, or 3 */
 
   union
   {
@@ -404,7 +404,7 @@ typedef struct HB_ChainContextSubstFormat3_  HB_ChainContextSubstFormat3;
 
 struct  HB_ChainContextSubst_
 {
-  HB_UShort  SubstFormat;             /* 1, 2, or 3 */
+  HB_Byte  SubstFormat;               /* 1, 2, or 3 */
 
   union
   {
