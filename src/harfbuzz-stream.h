@@ -37,10 +37,9 @@ HB_BEGIN_HEADER
 typedef struct HB_StreamRec_
 {
     HB_Byte*       base;
+    HB_Byte*       cursor;
     HB_UInt        size;
     HB_UInt        pos;
-    
-    HB_Byte*       cursor;
 } HB_StreamRec;
 
 #ifdef HB_USE_PACKED_STRUCTS

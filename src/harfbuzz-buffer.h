@@ -52,13 +52,13 @@ typedef struct HB_PositionRec_ {
   HB_Fixed   y_advance;
   HB_UShort  back;            /* number of glyphs to go back
 				 for drawing current glyph   */
+  HB_Short  cursive_chain;   /* character to which this connects,
+				 may be positive or negative; used
+				 only internally                     */
   HB_Bool    new_advance;     /* if set, the advance width values are
 				 absolute, i.e., they won't be
 				 added to the original glyph's value
 				 but rather replace them.            */
-  HB_Short  cursive_chain;   /* character to which this connects,
-				 may be positive or negative; used
-				 only internally                     */
 } HB_PositionRec, *HB_Position;
 
 
@@ -70,12 +70,12 @@ typedef struct HB_BufferRec_{
   HB_UInt    in_pos;
   HB_UInt    out_pos;
   
-  HB_Bool       separate_out;
   HB_GlyphItem  in_string;
   HB_GlyphItem  out_string;
   HB_GlyphItem  alt_string;
   HB_Position   positions;
   HB_UShort      max_ligID;
+  HB_Bool       separate_out;
 } HB_BufferRec, *HB_Buffer;
 
 HB_Error

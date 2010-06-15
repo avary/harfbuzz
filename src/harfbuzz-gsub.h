@@ -64,6 +64,14 @@ typedef HB_UShort  (*HB_AltFunction)(HB_UInt    pos,
 
 struct  HB_GSUBHeader_
 {
+  HB_GDEFHeader*  gdef;
+
+  /* the next two fields are used for an alternate substitution callback
+     function to select the proper alternate glyph.                      */
+
+  void*            data;
+  HB_AltFunction  altfunc;
+
   HB_UInt         offset;
 
   HB_16Dot16         Version;
@@ -71,14 +79,6 @@ struct  HB_GSUBHeader_
   HB_ScriptList   ScriptList;
   HB_FeatureList  FeatureList;
   HB_LookupList   LookupList;
-
-  HB_GDEFHeader*  gdef;
-
-  /* the next two fields are used for an alternate substitution callback
-     function to select the proper alternate glyph.                      */
-
-  HB_AltFunction  altfunc;
-  void*            data;
 };
 
 typedef struct HB_GSUBHeader_   HB_GSUBHeader;

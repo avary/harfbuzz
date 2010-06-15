@@ -42,8 +42,8 @@ HB_BEGIN_HEADER
 
 struct  HB_AttachPoint_
 {
-  HB_UShort   PointCount;             /* size of the PointIndex array */
   HB_UShort*  PointIndex;             /* array of contour points      */
+  HB_UShort   PointCount;             /* size of the PointIndex array */
 };
 
 /* Ligature Caret related structures */
@@ -66,8 +66,8 @@ typedef struct HB_CaretValueFormat2_  HB_CaretValueFormat2;
 
 struct  HB_CaretValueFormat3_
 {
-  HB_Short    Coordinate;             /* x or y value (in design units) */
   HB_Device*  Device;                 /* Device table for x or y value  */
+  HB_Short    Coordinate;             /* x or y value (in design units) */
 };
 
 typedef struct HB_CaretValueFormat3_  HB_CaretValueFormat3;
@@ -85,8 +85,6 @@ typedef struct HB_CaretValueFormat4_  HB_CaretValueFormat4;
 
 struct  HB_CaretValue_
 {
-  HB_Byte  CaretValueFormat;          /* 1, 2, 3, or 4 */
-
   union
   {
     HB_CaretValueFormat1  cvf1;
@@ -96,6 +94,8 @@ struct  HB_CaretValue_
     HB_CaretValueFormat4  cvf4;
 #endif
   } cvf;
+
+  HB_Byte  CaretValueFormat;          /* 1, 2, 3, or 4 */
 };
 
 typedef struct HB_CaretValue_  HB_CaretValue;
@@ -103,10 +103,9 @@ typedef struct HB_CaretValue_  HB_CaretValue;
 
 struct  HB_LigGlyph_
 {
-  HB_Bool          loaded;
-
-  HB_UShort        CaretCount;        /* number of caret values */
   HB_CaretValue*  CaretValue;        /* array of caret values  */
+  HB_UShort        CaretCount;        /* number of caret values */
+  HB_Bool          loaded;
 };
 
 
