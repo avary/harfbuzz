@@ -282,9 +282,7 @@ static HB_Error  Load_ValueRecord( HB_ValueRecord*  vr,
   else
   {
   empty1:
-    vr->XPlacementDevice.StartSize  = 0;
-    vr->XPlacementDevice.EndSize    = 0;
-    vr->XPlacementDevice.DeltaValue = NULL;
+    vr->XPlacementDevice = 0;
   }
 
   if ( format & HB_GPOS_FORMAT_HAVE_Y_PLACEMENT_DEVICE )
@@ -313,9 +311,7 @@ static HB_Error  Load_ValueRecord( HB_ValueRecord*  vr,
   else
   {
   empty2:
-    vr->YPlacementDevice.StartSize  = 0;
-    vr->YPlacementDevice.EndSize    = 0;
-    vr->YPlacementDevice.DeltaValue = NULL;
+    vr->YPlacementDevice = 0;
   }
 
   if ( format & HB_GPOS_FORMAT_HAVE_X_ADVANCE_DEVICE )
@@ -344,9 +340,7 @@ static HB_Error  Load_ValueRecord( HB_ValueRecord*  vr,
   else
   {
   empty3:
-    vr->XAdvanceDevice.StartSize  = 0;
-    vr->XAdvanceDevice.EndSize    = 0;
-    vr->XAdvanceDevice.DeltaValue = NULL;
+    vr->XAdvanceDevice = 0;
   }
 
   if ( format & HB_GPOS_FORMAT_HAVE_Y_ADVANCE_DEVICE )
@@ -375,9 +369,7 @@ static HB_Error  Load_ValueRecord( HB_ValueRecord*  vr,
   else
   {
   empty4:
-    vr->YAdvanceDevice.StartSize  = 0;
-    vr->YAdvanceDevice.EndSize    = 0;
-    vr->YAdvanceDevice.DeltaValue = NULL;
+    vr->YAdvanceDevice = 0;
   }
 
   if ( format & HB_GPOS_FORMAT_HAVE_X_ID_PLACEMENT )
@@ -651,9 +643,7 @@ static HB_Error  Load_Anchor( HB_Anchor*  an,
     }
     else
     {
-      an->af.af3.XDeviceTable.StartSize  = 0;
-      an->af.af3.XDeviceTable.EndSize    = 0;
-      an->af.af3.XDeviceTable.DeltaValue = NULL;
+      an->af.af3.XDeviceTable = 0;
     }
 
     if ( ACCESS_Frame( 2L ) )
@@ -676,9 +666,7 @@ static HB_Error  Load_Anchor( HB_Anchor*  an,
     }
     else
     {
-      an->af.af3.YDeviceTable.StartSize  = 0;
-      an->af.af3.YDeviceTable.EndSize    = 0;
-      an->af.af3.YDeviceTable.DeltaValue = NULL;
+      an->af.af3.YDeviceTable = 0;
     }
     break;
 

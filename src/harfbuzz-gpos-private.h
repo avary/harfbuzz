@@ -45,13 +45,13 @@ struct  HB_ValueRecord_
 					 advance                        */
   HB_Short    YAdvance;               /* vertical adjustment for
 					 advance                        */
-  HB_Device  XPlacementDevice;       /* device table for horizontal
+  HB_Device*  XPlacementDevice;       /* device table for horizontal
 					 placement                      */
-  HB_Device  YPlacementDevice;       /* device table for vertical
+  HB_Device*  YPlacementDevice;       /* device table for vertical
 					 placement                      */
-  HB_Device  XAdvanceDevice;         /* device table for horizontal
+  HB_Device*  XAdvanceDevice;         /* device table for horizontal
 					 advance                        */
-  HB_Device  YAdvanceDevice;         /* device table for vertical
+  HB_Device*  YAdvanceDevice;         /* device table for vertical
 					 advance                        */
 #ifdef HB_SUPPORT_MULTIPLE_MASTER
   HB_UShort   XIdPlacement;           /* horizontal placement metric ID */
@@ -104,8 +104,8 @@ struct  HB_AnchorFormat3_
 {
   HB_Short    XCoordinate;            /* horizontal value              */
   HB_Short    YCoordinate;            /* vertical value                */
-  HB_Device  XDeviceTable;           /* device table for X coordinate */
-  HB_Device  YDeviceTable;           /* device table for Y coordinate */
+  HB_Device*  XDeviceTable;           /* device table for X coordinate */
+  HB_Device*  YDeviceTable;           /* device table for Y coordinate */
 };
 
 typedef struct HB_AnchorFormat3_  HB_AnchorFormat3;

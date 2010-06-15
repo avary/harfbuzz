@@ -63,7 +63,7 @@ typedef struct HB_CaretValueFormat2_  HB_CaretValueFormat2;
 struct  HB_CaretValueFormat3_
 {
   HB_Short    Coordinate;             /* x or y value (in design units) */
-  HB_Device  Device;                 /* Device table for x or y value  */
+  HB_Device*  Device;                 /* Device table for x or y value  */
 };
 
 typedef struct HB_CaretValueFormat3_  HB_CaretValueFormat3;
