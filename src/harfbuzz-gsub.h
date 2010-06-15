@@ -32,6 +32,10 @@
 HB_BEGIN_HEADER
 
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(push, 1)
+#endif
+
 /* Lookup types for glyph substitution */
 
 #define HB_GSUB_LOOKUP_SINGLE        1
@@ -135,6 +139,9 @@ HB_Error  HB_GSUB_Register_Alternate_Function( HB_GSUBHeader*  gsub,
 HB_Error  HB_GSUB_Apply_String( HB_GSUBHeader*   gsub,
 				HB_Buffer        buffer );
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(pop)
+#endif
 
 HB_END_HEADER
 

@@ -31,6 +31,10 @@
 
 HB_BEGIN_HEADER
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(push, 1)
+#endif
+
 /* GDEF glyph properties.  Note that HB_GDEF_COMPONENT has no corresponding
  * flag in the LookupFlag field.     */
 #define HB_GDEF_BASE_GLYPH  0x0002
@@ -129,6 +133,9 @@ HB_Error  HB_GDEF_Build_ClassDefinition( HB_GDEFHeader*  gdef,
 					 HB_UShort*       glyph_array,
 					 HB_UShort*       class_array );
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(pop)
+#endif
 
 HB_END_HEADER
 

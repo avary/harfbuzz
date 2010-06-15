@@ -30,6 +30,10 @@
 
 HB_BEGIN_HEADER
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(push, 1)
+#endif
+
 /* Use this if a feature applies to all glyphs */
 #define HB_ALL_GLYPHS                    0xFFFF
 
@@ -276,6 +280,9 @@ enum  HB_Type_
 
 typedef enum HB_Type_  HB_Type;
 
+#ifdef HB_USE_PACKED_STRUCTS
+#pragma pack(pop)
+#endif
 
 HB_END_HEADER
 
